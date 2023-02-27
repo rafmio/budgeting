@@ -1,0 +1,9 @@
+
+Go inside container: 
+$ sudo docker exec -it f751e9ef7e6a bash
+
+Check for running containers:
+$ sudo docker ps
+
+Check for all existing containers:
+$ sudo docker ps -a
