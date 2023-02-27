@@ -1,9 +1,81 @@
 
 Go inside container: 
 $ sudo docker exec -it f751e9ef7e6a bash
+	- run 'bash' process inside of container
+
+Go inside container:
+$ sudo docker run -it <container-name>
+$ sudo docker run -it busybox
 
 Check for running containers:
 $ sudo docker ps
 
 Check for all existing containers:
 $ sudo docker ps -a
+
+For running containger in background:
+$ sudo docker run -d <containder-name>
+$ sudo docker run -d nginx
+	-d - 'detatched'
+
+docker run - every run - new container
+
+Check for container's IP:
+$ sudo docker inspect <containder-name> or <container ID>
+
+Inside of container check for IP:
+# hostname -i
+
+Stop container:
+$ sudo docker spop <containder ID>
+
+Просмотреть html файл, который показывает nginx браузеру:
+# cd /usr/share/nginx/html
+
+Запустить именованный контейнер:
+$ sudo docker run -d --name container-name containder-image
+$ sudo docker run -d --name my_nginx nginx
+
+Для того, чтобы открыть доступ к сервису внутри контейнера, который
+работает на определенном порту, необходимо использовать 
+опцию -p (public). С помощью этой опции можно открыть определенный 
+порт на своем ПК и пробросить его на порт внутри контейнера
+
+$ sudo docker run -p 8080:80 nginx
+		     [внешний порт]:[порт контейнера] название образа
+
+Маппинг томов:
+$ sudo docker run -v ${PWD}:/usr/share/nginx/html nginx
+	-v - value
+	${PWD} - переменная - значение папки вне контейнера,
+		 которую мы смэппим внутрь контейнера
+
+Маппинг томов + маппинг портов + запуск в фоновом режиме:
+$ sudo docker run -v ${PWD}:/usr/share/nginx/html -p 8080:80 -d nginx
+
+Предварительно в папке html (вне контейнера) создали файл index.html
+Если мы войдем в контейнер в папку /usr/share/nginx/html - то там мы 
+увидем тот самый файл, который мы создали в папке html вне контейнера
+
+Данные в смэпленной папке передаются в контейнер в реальном времени
+
+Вместо ${PWD} можно использовать абсолютный путь
+
+Создать контейнер, который будет сразу удален сразу после завершения
+процессов или выхода из него:
+$ sudo docker run -it --rm busybox
+$ sudo docker run -it --rm <image-name>
+
+	-i - interactive
+	-t - terminal
+
+Пример создания контейнера с читабельной разбивкой по строкам:
+$ sudo docker run \
+> --name my-nginx \
+> -v ${PWD}:/usr/share/nginx/html \
+> -p 8888:80 \
+> -d \
+> --rm \
+> nginx
+
+
