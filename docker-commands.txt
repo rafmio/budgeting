@@ -27,7 +27,7 @@ Inside of container check for IP:
 # hostname -i
 
 Stop container:
-$ sudo docker spop <containder ID>
+$ sudo docker stop <containder ID>
 
 Просмотреть html файл, который показывает nginx браузеру:
 # cd /usr/share/nginx/html
