@@ -79,3 +79,6 @@ $ sudo docker run \
 > nginx
 
 
+Просто так PostgreSQL не запустить, нужно устанавливать пароль для рута
+root@localhost:~# docker run --name budget -p 8432:5432 -e POSTGRES_PASSWORD=qwq121 -d postgres
+
