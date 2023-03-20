@@ -26,21 +26,24 @@ func menu() {
 			os.Exit(1)
 		}
 
-		fmt.Println("in main.go file, case 1: ", entries)
+		fmt.Println(len(entries))
+		for _, val := range entries {
+			fmt.Println(val)
+		}
 
 	case 2:
 		var entry Entry = Entry{
 			Account:       "Alfa",
-			Trdate:        "2023.02.24",
+			Trdate:        "2023.02.26",
 			Trtype:        "Purchases",
-			Docdate:       "2023.02.25",
-			Docnumb:       "43",
-			Counterparty:  "Global Trucs",
-			Cntp_tax_id:   "1660432383",
-			Cntp_contract: "00942",
-			Purpose:       "Truck repair, invoce #1343",
+			Docdate:       "2023.02.26",
+			Docnumb:       "543",
+			Counterparty:  "Scania Rus",
+			Cntp_tax_id:   "7854433454",
+			Cntp_contract: "78434",
+			Purpose:       "Truck repair, invoce #1232-32",
 			Direction:     "outflow",
-			Amount:        128_325.60,
+			Amount:        17_323.00,
 			Item:          "Truck repair",
 		}
 

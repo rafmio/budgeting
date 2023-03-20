@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func GetEntriesRows() ([]string, error) {
+func GetEntriesRows() ([]Entry, error) {
 	conn, err := EstablishConnectionDB()
 	if err != nil {
 		fmt.Println("connection to DB: ", err.Error())
@@ -22,15 +22,38 @@ func GetEntriesRows() ([]string, error) {
 	}
 	defer rows.Close()
 
-	var sqlResponse []string
+	var sqlResponse []Entry
 
 	for rows.Next() {
-		var entry string
-		rows.Scan(&entry)
-		fmt.Println("in getEntriesRows.go file: ", entry)
-		sqlResponse = append(sqlResponse, entry)
+		values, err := rows.Values()
+		fmt.Println("values: ", values[11])
+		if err != nil {
+			fmt.Println("values: ", values)
+		}
 	}
-	fmt.Println("slice with entries is completed")
+	fmt.Println("-------------------")
+
+	// for rows.Next() {
+	// 	var entry Entry
+	// 	rows.Scan(&entry.ID,
+	// 		&entry.Account,
+	// 		&entry.Trdate,
+	// 		&entry.Trtype,
+	// 		&entry.Docdate,
+	// 		&entry.Docnumb,
+	// 		&entry.Counterparty,
+	// 		&entry.Cntp_tax_id,
+	// 		&entry.Cntp_contract,
+	// 		&entry.Purpose,
+	// 		&entry.Comment,
+	// 		&entry.Direction,
+	// 		&entry.Amount,
+	// 		&entry.Item,
+	// 	)
+	// 	fmt.Println("in getEntriesRows.go file: ", entry)
+	// 	sqlResponse = append(sqlResponse, entry)
+	// }
+	// fmt.Println("slice with entries is completed")
 
 	return sqlResponse, err
 }
