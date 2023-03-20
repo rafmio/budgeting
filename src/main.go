@@ -26,11 +26,7 @@ func menu() {
 			os.Exit(1)
 		}
 
-		fmt.Println("printing list of entries: ")
-		fmt.Println("len(entries): ", len(entries))
-		for _, val := range entries {
-			fmt.Println(val)
-		}
+		fmt.Println("in main.go file, case 1: ", entries)
 
 	case 2:
 		var entry Entry = Entry{

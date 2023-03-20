@@ -27,6 +27,7 @@ func GetEntriesRows() ([]string, error) {
 	for rows.Next() {
 		var entry string
 		rows.Scan(&entry)
+		fmt.Println("in getEntriesRows.go file: ", entry)
 		sqlResponse = append(sqlResponse, entry)
 	}
 	fmt.Println("slice with entries is completed")
